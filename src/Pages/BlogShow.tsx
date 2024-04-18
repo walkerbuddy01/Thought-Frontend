@@ -1,11 +1,11 @@
-import { useLocation, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import Appbar from "../Components/Appbar";
 import { Avatar } from "../Components/Avatar";
 import { useGetBlog } from "../Hook/useGetBlog";
 
 function Blog() {
   const { id } = useParams();
-  const { loading, error, blog } = useGetBlog({ id });
+  const { loading, blog } = useGetBlog({ id });
   // const location = useLocation();
 
   return (

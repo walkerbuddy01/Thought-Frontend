@@ -13,7 +13,7 @@ interface blogType {
   id: number;
 }
 function BlogSection() {
-  const { loading, error, blogs } = useBlog({ page: 1, limit: 100 });
+  const { loading, blogs } = useBlog({ page: 1, limit: 100 });
 
   return (
     <div className="overflow-hidden h-screen ">
