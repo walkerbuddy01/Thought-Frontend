@@ -2,14 +2,13 @@ import { useState } from "react";
 import InputBox from "../Components/InputBox";
 import Qoute from "../Components/Qoute";
 import CustomButton from "../Components/CustomButton";
-import { signUp } from "@walkerbuddy/basic-auth-validation";
 import { Link, useNavigate } from "react-router-dom";
 import { BackendUrl } from "../config/config";
 import axios from "axios";
 
 function Signup() {
   const navigate = useNavigate();
-  const [userDetail, setUserDetail] = useState<signUp>({
+  const [userDetail, setUserDetail] = useState({
     username: "",
     email: "",
     name: "",
