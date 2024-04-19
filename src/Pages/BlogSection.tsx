@@ -20,7 +20,7 @@ function BlogSection() {
       <Appbar authorname="Karan" />
 
       {loading ? (
-        <div>loading..</div>
+        <div>loading...</div>
       ) : (
         <div className=" md:flex md:justify-center h-[90%]   ">
           <div className=" max-w-screen-sm h-full  overflow-x-hidden  scrollbar-thumb-rounded-full scrollbar-hide ">

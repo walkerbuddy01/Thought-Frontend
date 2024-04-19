@@ -2,10 +2,11 @@ import { useState } from "react";
 import CustomButton from "../Components/CustomButton";
 import InputBox from "../Components/InputBox";
 import Qoute from "../Components/Qoute";
-import { signIn } from "@walkerbuddy/basic-auth-validation";
+import { signIn, signinInput } from "@walkerbuddy/basic-auth-validation";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BackendUrl } from "../config/config";
+import toast, { Toaster } from "react-hot-toast";
 
 function Signin() {
   const navigate = useNavigate();
@@ -14,26 +15,44 @@ function Signin() {
     username: "",
     password: "",
   });
+  const [error, setError] = useState("");
 
   async function signingIn() {
-    try {
-      const response = await axios({
+    return new Promise((resolve, reject) => {
+      setError("");
+
+      const dataformat = signinInput.safeParse(userDetail);
+      //@ts-ignore
+
+      if (!dataformat.success) {
+        setError(`invalid Format`);
+        return reject("Invalid inputs");
+      }
+      axios({
         method: "post",
         url: `${BackendUrl}/user/signin`,
         data: userDetail,
-      });
-      //@ts-ignore
-      localStorage.setItem("token", response.data.token);
-      navigate("/blog");
-    } catch (error: any) {
-      alert(error.message);
-      // setError(String(error.message));
-    }
+      })
+        .then((Response) => {
+          localStorage.setItem("token", Response.data.token);
+          resolve("process complete");
+          setTimeout(() => {
+            navigate("/blog");
+            return;
+          }, 1000);
+        })
+        .catch((err) => {
+          setError(err.response.data.message);
+          reject(err);
+        });
+    });
+    
   }
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2">
       <div className="flex justify-center items-center h-screen bg-orange-300">
+        <Toaster position="top-center" reverseOrder={false} />
         <div className="bg-gray-500  bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-50 border border-gray-100  w-[90%] sm:w-[60%] p-4 sm:p-7  rounded-2xl">
           <h2 className="text-white text-xl text-center font-semibold">
             Sign in
@@ -61,7 +80,28 @@ function Signin() {
               setUserDetail({ ...userDetail, password: e.target.value });
             }}
           />
-          <CustomButton onClick={signingIn} childern="Signin" />
+          <CustomButton
+            onClick={() => {
+              //@ts-ignore
+              toast.promise(
+                signingIn(),
+                {
+                  loading: "Signing In...",
+                  success: <b className="text-green-600">Signed in</b>,
+                  error: (
+                    <b className="text-red-500">
+                      Failed to Sign in {error && <>{error}</>}
+                    </b>
+                  ),
+                },
+                {
+                  duration: 2000,
+                }
+              );
+              setError("")
+            }}
+            childern="Signin"
+          />
         </div>
       </div>
 

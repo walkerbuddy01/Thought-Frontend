@@ -5,6 +5,8 @@ import CustomButton from "../Components/CustomButton";
 import { Link, useNavigate } from "react-router-dom";
 import { BackendUrl } from "../config/config";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+import { signupInput } from "@walkerbuddy/basic-auth-validation";
 
 function Signup() {
   const navigate = useNavigate();
@@ -14,25 +16,44 @@ function Signup() {
     name: "",
     password: "",
   });
+  const [error, setError] = useState("");
 
-  async function signingUp() {
-    try {
-      const response = await axios({
+  function signingUp() {
+    return new Promise((resolve, reject) => {
+      setError("");
+      
+      const dataformat = signupInput.safeParse(userDetail);
+      //@ts-ignore
+
+      if (!dataformat.success) {
+        setError(`invalid Format`);
+        return reject("Invalid inputs");
+      }
+      axios({
         method: "post",
         url: `${BackendUrl}/user/signup`,
         data: userDetail,
-      });
-      localStorage.setItem("token", response.data.token);
-
-      navigate("/blog");
-    } catch (error: any) {
-      alert(error.message);
-    }
+      })
+        .then((Response) => {
+          localStorage.setItem("token", Response.data.token);
+          resolve("process complete");
+          setTimeout(() => {
+            navigate("/blog");
+            return;
+          }, 1000);
+        })
+        .catch((err) => {
+          setError(err.response.data.message);
+          reject(err);
+        });
+    });
   }
+  //@ts-ignore
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 ">
       <div className="flex justify-center items-center bg-orange-300 h-screen">
+        <Toaster position="top-center" reverseOrder={false} />
         <div className="bg-gray-500  bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-50 border border-gray-100 w-[90%] sm:w-[60%] p-4 sm:p-7 rounded-2xl">
           <h2 className="text-white text-xl text-center font-semibold">
             Sign Up
@@ -77,7 +98,27 @@ function Signup() {
               setUserDetail({ ...userDetail, password: e.target.value });
             }}
           />
-          <CustomButton onClick={signingUp} childern="Sign up" />
+          <CustomButton
+            onClick={() => {
+              //@ts-ignore
+              toast.promise(
+                signingUp(),
+                {
+                  loading: "Signing up...",
+                  success: <b className="text-green-600">Signed up</b>,
+                  error: (
+                    <b className="text-red-500">
+                      Failed to Sign up {error && <>{error}</>}
+                    </b>
+                  ),
+                },
+                {
+                  duration: 2000,
+                }
+              );
+            }}
+            childern="Sign up"
+          />
         </div>
       </div>
 
