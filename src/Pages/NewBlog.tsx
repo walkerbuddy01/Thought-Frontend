@@ -3,28 +3,49 @@ import Appbar from "../Components/Appbar";
 import axios from "axios";
 import { BackendUrl } from "../config/config";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 interface blogDataProps {
   title: string;
   content: string;
 }
 function NewBlog() {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
   const [blogData, setBlogData] = useState<blogDataProps>({
     title: "",
     content: "",
   });
-  async function publishBlog(e: any) {
-    e.preventDefault();
-    axios({
-      method: "post",
-      headers: {
-        Authorization: localStorage.getItem("token"),
-      },
-      url: `${BackendUrl}/blog`,
-      data: blogData,
-    }).then((response) => {
 
-      navigate(`/blog/${response.data.id}`)
+  function publishBlog(e: any) {
+    setError("");
+    return new Promise((resolve, reject) => {
+      if (!blogData.title) {
+        setError("Title is required");
+        return reject();
+      }
+      if (!blogData.content) {
+        setError("Content is required");
+        return reject();
+      }
+      e.preventDefault();
+      axios({
+        method: "post",
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+        url: `${BackendUrl}/blog`,
+        data: blogData,
+      })
+        .then((response) => {
+          resolve("posting done");
+          setTimeout(() => {
+            navigate(`/blog/${response.data.id}`);
+          }, 700);
+        })
+        .catch((err) => {
+          setError(err.response.data.message);
+          reject(err);
+        });
     });
   }
   return (
@@ -33,6 +54,7 @@ function NewBlog() {
 
       <div className="w-full flex flex-col gap-3 items-center p-2 md:p-4">
         <div className="w-full border-b md:p-3">
+          <Toaster position="top-center" reverseOrder={false} />
           <div className="mb-5">
             <label
               htmlFor="title"
@@ -73,7 +95,21 @@ function NewBlog() {
             <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
               <button
                 onClick={(e) => {
-                  publishBlog(e);
+                  toast.promise(
+                    publishBlog(e),
+                    {
+                      loading: "Blog posting...",
+                      success: <b className="text-green-600">Blog Posted</b>,
+                      error: (
+                        <b className="text-red-500">
+                          Failed to Posting {error && <>{error}</>}
+                        </b>
+                      ),
+                    },
+                    {
+                      duration: 3000,
+                    }
+                  );
                 }}
                 className="inline-flex items-center px-2  py-1 md:py-2.5 md:px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
               >

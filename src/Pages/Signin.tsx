@@ -51,7 +51,7 @@ function Signin() {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2">
-      <div className="flex justify-center items-center h-screen bg-orange-300">
+      <div className="flex justify-center items-center h-screen bg-teal-800">
         <Toaster position="top-center" reverseOrder={false} />
         <div className="bg-gray-500  bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-50 border border-gray-100  w-[90%] sm:w-[60%] p-4 sm:p-7  rounded-2xl">
           <h2 className="text-white text-xl text-center font-semibold">
@@ -108,7 +108,7 @@ function Signin() {
       <Qoute
         qoute="Embrace technology: it's the canvas upon which dreams are painted."
         author="By Chatgpt"
-        QouteClass="sm:flex"
+        QouteClass="sm:flex bg-amber-300"
       />
     </div>
   );

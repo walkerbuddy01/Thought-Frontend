@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Appbar from "../Components/Appbar";
 import BlogCard from "../Components/BlogCard";
 import { useBlog } from "../Hook/UseBlog";
+import BlogSkeleton from "../Components/Skeletons/BlogSkeleton";
 
 interface blogType {
   user: {
@@ -20,10 +21,24 @@ function BlogSection() {
       <Appbar authorname="Karan" />
 
       {loading ? (
-        <div>loading...</div>
+        <div className=" md:flex md:justify-center h-[90%] w-full ">
+          <div
+            role="status"
+            className="p-4 space-y-4   divide-y divide-gray-200 rounded shadow animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700 w-full 
+            
+            sm:max-w-screen-sm h-full  overflow-x-hidden  scrollbar-thumb-rounded-full scrollbar-hide 
+            "
+          >
+            <BlogSkeleton />
+            <BlogSkeleton />
+            <BlogSkeleton />
+            <BlogSkeleton />
+            <BlogSkeleton />
+          </div>
+        </div>
       ) : (
         <div className=" md:flex md:justify-center h-[90%]   ">
-          <div className=" max-w-screen-sm h-full  overflow-x-hidden  scrollbar-thumb-rounded-full scrollbar-hide ">
+          <div className=" sm:max-w-screen-sm h-full  overflow-x-hidden  scrollbar-thumb-rounded-full scrollbar-hide ">
             {blogs.map((blog: blogType) => (
               <div key={blog.id}>
                 <Link to={`/blog/${blog.id}`}>

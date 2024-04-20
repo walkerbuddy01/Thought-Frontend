@@ -25,7 +25,7 @@ function InputBox({
       <input
         type={type}
         placeholder={placeholder}
-        className={`bg-gray-500  bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-50 border border-gray-100 px-2 py-1 placeholder:text-sm placeholder:text-white focus:outline-none rounded-md text-white ${inputClass} w-full ${Label}`}
+        className={`bg-gray-800  bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-50 border border-gray-100 px-2 py-1 placeholder:text-sm placeholder:text-white focus:outline-none rounded-md text-white ${inputClass} w-full ${Label}`}
         onChange={onChange}
       />
     </div>

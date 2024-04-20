@@ -52,7 +52,7 @@ function Signup() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 ">
-      <div className="flex justify-center items-center bg-orange-300 h-screen">
+      <div className="flex justify-center items-center bg-emerald-900 h-screen">
         <Toaster position="top-center" reverseOrder={false} />
         <div className="bg-gray-500  bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-50 border border-gray-100 w-[90%] sm:w-[60%] p-4 sm:p-7 rounded-2xl">
           <h2 className="text-white text-xl text-center font-semibold">
