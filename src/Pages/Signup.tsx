@@ -7,8 +7,11 @@ import { BackendUrl } from "../config/config";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { signupInput } from "@walkerbuddy/basic-auth-validation";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/AuthSlice";
 
 function Signup() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userDetail, setUserDetail] = useState({
     username: "",
@@ -21,7 +24,7 @@ function Signup() {
   function signingUp() {
     return new Promise((resolve, reject) => {
       setError("");
-      
+
       const dataformat = signupInput.safeParse(userDetail);
       //@ts-ignore
 
@@ -36,6 +39,7 @@ function Signup() {
       })
         .then((Response) => {
           localStorage.setItem("token", Response.data.token);
+          dispatch(login(Response.data.data));
           resolve("process complete");
           setTimeout(() => {
             navigate("/blog");

@@ -7,12 +7,7 @@ interface BlogCardProps {
   content: string;
 }
 
-function BlogCard({
-  username = "user",
-  date,
-  title,
-  content,
-}: BlogCardProps) {
+function BlogCard({ username = "user", date, title, content }: BlogCardProps) {
   return (
     <div className="w-full  border-b p-3 md:p-5  ">
       <div className="flex py-2">
@@ -30,7 +25,10 @@ function BlogCard({
       </div>
       <div className="text-lg md:text-xl font-semibold">{title}</div>
       <div className=" text-base w-[90%]">{`${content.slice(0, 80)}.....`}</div>
-      <div className="text-sm text-slate-500">
+      <div
+        className="text-sm font-medium 
+       text-slate-500"
+      >
         {Math.ceil(content.length / 100)} min read
       </div>
     </div>

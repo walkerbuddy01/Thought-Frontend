@@ -7,9 +7,13 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BackendUrl } from "../config/config";
 import toast, { Toaster } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/AuthSlice";
 
 function Signin() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   // const [error, setError] = useState("");
   const [userDetail, setUserDetail] = useState<signIn>({
     username: "",
@@ -35,6 +39,9 @@ function Signin() {
       })
         .then((Response) => {
           localStorage.setItem("token", Response.data.token);
+          const userData = Response.data.data;
+          dispatch(login(userData));
+
           resolve("process complete");
           setTimeout(() => {
             navigate("/blog");
@@ -46,7 +53,6 @@ function Signin() {
           reject(err);
         });
     });
-    
   }
 
   return (
@@ -98,7 +104,7 @@ function Signin() {
                   duration: 2000,
                 }
               );
-              setError("")
+              setError("");
             }}
             childern="Signin"
           />
