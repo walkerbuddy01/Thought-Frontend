@@ -7,13 +7,15 @@ import toast, { Toaster } from "react-hot-toast";
 interface blogDataProps {
   title: string;
   content: string;
+  createdAt: string;
 }
-function NewBlog() {
+function NewBlog(): JSX.Element {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [blogData, setBlogData] = useState<blogDataProps>({
     title: "",
     content: "",
+    createdAt: "",
   });
 
   function publishBlog(e: any) {
@@ -28,6 +30,8 @@ function NewBlog() {
         return reject();
       }
       e.preventDefault();
+      const createdAt = new Date();
+      blogData.createdAt = createdAt.toDateString();
       axios({
         method: "post",
         headers: {

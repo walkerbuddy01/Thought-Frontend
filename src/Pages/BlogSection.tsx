@@ -3,6 +3,7 @@ import Appbar from "../Components/Appbar";
 import BlogCard from "../Components/BlogCard";
 import { useBlog } from "../Hook/UseBlog";
 import BlogSkeleton from "../Components/Skeletons/BlogSkeleton";
+import { useSelector } from "react-redux";
 
 interface blogType {
   user: {
@@ -12,13 +13,15 @@ interface blogType {
   content: string;
   userId: number;
   id: number;
+  createdAt: Date;
 }
 function BlogSection() {
   const { loading, blogs } = useBlog({ page: 1, limit: 100 });
+  const userDetail = useSelector((state: any) => state.auth.userData);
 
   return (
     <div className="overflow-hidden h-screen ">
-      <Appbar authorname="Karan" />
+      <Appbar authorname={`${userDetail.username} `} />
 
       {loading ? (
         <div className=" md:flex md:justify-center h-[90%] w-full ">
@@ -38,13 +41,14 @@ function BlogSection() {
         </div>
       ) : (
         <div className=" md:flex md:justify-center h-[90%]   ">
-          <div className=" sm:max-w-screen-sm h-full  overflow-x-hidden  scrollbar-thumb-rounded-full scrollbar-hide ">
+          <div className="space-y-5   rounded shadow sm:max-w-screen-sm h-full  overflow-x-hidden  scrollbar-thumb-rounded-full scrollbar-hide ">
             {blogs.map((blog: blogType) => (
+              
               <div key={blog.id}>
                 <Link to={`/blog/${blog.id}`}>
                   <BlogCard
                     username={blog.user.username}
-                    date="Dec 3,2023"
+                    date={`${blog.createdAt}`}
                     title={blog.title}
                     content={blog.content}
                   />
