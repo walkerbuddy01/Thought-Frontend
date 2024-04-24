@@ -13,7 +13,6 @@ function AuthLayout({ children, authentication = false }: AuthLayoutProps) {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (authentication && isLoggedIn !== authentication) {
-      console.log(isLoggedIn);
 
       return navigate("/signin");
     } else if (!authentication && isLoggedIn !== authentication) {

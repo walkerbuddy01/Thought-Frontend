@@ -38,15 +38,14 @@ function Signin() {
         data: userDetail,
       })
         .then((Response) => {
+          resolve("process complete");
           localStorage.setItem("token", Response.data.token);
           const userData = Response.data.data;
           dispatch(login(userData));
 
-          resolve("process complete");
           setTimeout(() => {
             navigate("/blog");
-            return;
-          }, 1000);
+          }, 2000);
         })
         .catch((err) => {
           setError(err.response.data.message);
