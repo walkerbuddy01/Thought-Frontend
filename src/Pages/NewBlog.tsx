@@ -54,7 +54,7 @@ function NewBlog(): JSX.Element {
   }
   return (
     <div>
-      <Appbar authorname="" />
+      <Appbar  />
 
       <div className="w-full flex flex-col gap-3 items-center p-2 md:p-4">
         <div className="w-full border-b md:p-3">
