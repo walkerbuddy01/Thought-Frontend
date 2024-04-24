@@ -10,7 +10,7 @@ function Blog() {
 
   return (
     <div className=" overflow-hidden h-screen w-screen">
-      <Appbar authorname={blog.user.username} />
+      <Appbar/>
       {loading ? (
         <div>loading...</div>
       ) : (

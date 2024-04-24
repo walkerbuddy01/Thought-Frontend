@@ -3,7 +3,6 @@ import Appbar from "../Components/Appbar";
 import BlogCard from "../Components/BlogCard";
 import { useBlog } from "../Hook/UseBlog";
 import BlogSkeleton from "../Components/Skeletons/BlogSkeleton";
-import { useSelector } from "react-redux";
 
 interface blogType {
   user: {
