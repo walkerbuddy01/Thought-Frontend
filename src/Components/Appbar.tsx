@@ -18,6 +18,7 @@ function Appbar({ buttonNeeded = true }: { buttonNeeded?: boolean }) {
   const userData = useSelector((state: any) => state.auth.userData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   return (
     <div className="flex justify-between border-b p-3">
       <Link to={"/blog"}>
@@ -39,11 +40,11 @@ function Appbar({ buttonNeeded = true }: { buttonNeeded?: boolean }) {
       <DropdownMenu>
         <DropdownMenuTrigger>
           {" "}
-          <Avatar authorname={userData.username} size="large" />
+          <Avatar authorname={userData?.username} size="large" />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>{userData.username}</DropdownMenuLabel>
-          <DropdownMenuLabel>{userData.email}</DropdownMenuLabel>
+          <DropdownMenuLabel>{userData?.username}</DropdownMenuLabel>
+          <DropdownMenuLabel>{userData?.email}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <Link to={"/dashboard"}>
             <DropdownMenuItem>
