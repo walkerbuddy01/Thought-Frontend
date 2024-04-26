@@ -16,9 +16,12 @@ import { Progress } from "./Components/ui/progress";
 function App() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
+  const [progressvalue, setProgressValue] = useState(0);
+  const intervalValue = setInterval(() => {
+    setProgressValue((prev) => prev + 1 * 1.5);
+  }, 500);
   const token = localStorage.getItem("token");
-
-  useEffect(() => {
+  function fetchCurrentData() {
     axios({
       method: "get",
       headers: { Authorization: token },
@@ -26,11 +29,21 @@ function App() {
     })
       .then((response) => dispatch(login(response.data)))
       .catch(() => dispatch(logout()))
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        clearInterval(intervalValue);
+      });
+  }
+
+  useEffect(() => {
+    fetchCurrentData();
   }, []);
 
   return loading ? (
-    <Progress value={33} />
+    <div className="h-screen flex flex-col justify-center items-center">
+      <h1>Loading Content...</h1>
+      <Progress value={progressvalue} />
+    </div>
   ) : (
     <>
       <BrowserRouter>

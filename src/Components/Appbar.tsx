@@ -11,8 +11,8 @@ import {
 import { TbLogout2 } from "react-icons/tb";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
-import { MdOutlineCreate } from "react-icons/md";
 import { logout } from "../../store/AuthSlice";
+import { IoAddCircleOutline } from "react-icons/io5";
 
 function Appbar({ buttonNeeded = true }: { buttonNeeded?: boolean }) {
   const userData = useSelector((state: any) => state.auth.userData);
@@ -22,19 +22,19 @@ function Appbar({ buttonNeeded = true }: { buttonNeeded?: boolean }) {
   return (
     <div className="flex justify-between border-b p-3">
       <Link to={"/blog"}>
-        <div className="font-semibold">Medium</div>
+        <div className="w-24">
+          <img src="src\assets\thought.png" alt="thought" className="w-full" />
+        </div>
       </Link>
+      <div className="flex items-center gap-4">
+
+      
       {buttonNeeded && (
-        <button
-          type="button"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-slate-400"
-          onClick={() => {
-            navigate("/createblog");
-          }}
-        >
-          <MdOutlineCreate />
-          <span className="ml-3">New blog</span>
-        </button>
+        <IoAddCircleOutline size="2em" onClick={() => {
+          
+          navigate("/createblog");
+        }}/>
+        
       )}
       {/* //Adding  */}
       <DropdownMenu>
@@ -65,6 +65,7 @@ function Appbar({ buttonNeeded = true }: { buttonNeeded?: boolean }) {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      </div>
       {/* //Adding  */}
     </div>
   );

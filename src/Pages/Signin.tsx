@@ -13,6 +13,8 @@ import { login } from "../../store/AuthSlice";
 function Signin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+ 
+  
 
   // const [error, setError] = useState("");
   const [userDetail, setUserDetail] = useState<signIn>({
@@ -54,7 +56,7 @@ function Signin() {
     });
   }
 
-  return (
+  return  (
     <div className="grid grid-cols-1 sm:grid-cols-2">
       <div className="flex justify-center items-center h-screen bg-teal-800">
         <Toaster position="top-center" reverseOrder={false} />
