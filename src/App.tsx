@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { BackendUrl } from "./config/config";
 import { login, logout } from "../store/AuthSlice";
+import Dashboard from "./Pages/Dashboard";
+import { Progress } from "./Components/ui/progress";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,7 +30,7 @@ function App() {
   }, []);
 
   return loading ? (
-    <div>loading</div>
+    <Progress value={33} />
   ) : (
     <>
       <BrowserRouter>
@@ -65,6 +67,12 @@ function App() {
             path="/createblog"
             element={
               <AuthLayout children={<NewBlog />} authentication={true} />
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <AuthLayout children={<Dashboard />} authentication={true} />
             }
           />
         </Routes>
