@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { BackendUrl } from "./config/config";
 import { login, logout } from "../store/AuthSlice";
+import Dashboard from "./Pages/Dashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -65,6 +66,12 @@ function App() {
             path="/createblog"
             element={
               <AuthLayout children={<NewBlog />} authentication={true} />
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <AuthLayout children={<Dashboard />} authentication={true} />
             }
           />
         </Routes>
