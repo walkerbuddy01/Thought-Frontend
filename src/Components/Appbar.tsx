@@ -23,15 +23,14 @@ function Appbar({ buttonNeeded = true }: { buttonNeeded?: boolean }) {
     <div className="flex justify-between border-b p-3">
       <Link to={"/blog"}>
         <div className="w-24">
-<<<<<<< Updated upstream
-          <img src="src\assets\thought.png" alt="thought" className="w-full" />
-=======
+
+
           <img
             src=" /public/static/images/thought.png"
             alt="thought"
             className="w-full"
           />
->>>>>>> Stashed changes
+
         </div>
       </Link>
       <div className="flex items-center gap-4">
