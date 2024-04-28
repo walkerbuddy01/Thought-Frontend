@@ -27,44 +27,43 @@ function Appbar({ buttonNeeded = true }: { buttonNeeded?: boolean }) {
         </div>
       </Link>
       <div className="flex items-center gap-4">
-
-      
-      {buttonNeeded && (
-        <IoAddCircleOutline size="2em" onClick={() => {
-          
-          navigate("/createblog");
-        }}/>
-        
-      )}
-      {/* //Adding  */}
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          {" "}
-          <Avatar authorname={userData?.username} size="large" />
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>{userData?.username}</DropdownMenuLabel>
-          <DropdownMenuLabel>{userData?.email}</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <Link to={"/dashboard"}>
-            <DropdownMenuItem>
-              <LuLayoutDashboard />
-              <span className="ml-2">Dashboard</span>
-            </DropdownMenuItem>
-          </Link>
-          <DropdownMenuItem
+        {buttonNeeded && (
+          <IoAddCircleOutline
+            size="2em"
             onClick={() => {
-              localStorage.setItem("token", "");
-
-              navigate("/signin");
-              dispatch(logout());
+              navigate("/createblog");
             }}
-          >
-            <TbLogout2 />
-            <span className="ml-2">Logout</span>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+          />
+        )}
+        {/* //Adding  */}
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            {" "}
+            <Avatar authorname={userData?.username} size="large" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>{userData?.username}</DropdownMenuLabel>
+            <DropdownMenuLabel>{userData?.email}</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <Link to={"/dashboard"}>
+              <DropdownMenuItem>
+                <LuLayoutDashboard />
+                <span className="ml-2">Dashboard</span>
+              </DropdownMenuItem>
+            </Link>
+            <DropdownMenuItem
+              onClick={() => {
+                localStorage.setItem("token", "");
+
+                navigate("/signin");
+                dispatch(logout());
+              }}
+            >
+              <TbLogout2 />
+              <span className="ml-2">Logout</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
       {/* //Adding  */}
     </div>
