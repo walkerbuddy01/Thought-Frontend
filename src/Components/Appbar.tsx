@@ -23,7 +23,7 @@ function Appbar({ buttonNeeded = true }: { buttonNeeded?: boolean }) {
     <div className="flex justify-between border-b p-3">
       <Link to={"/blog"}>
         <div className="w-24">
-          <img src="src\assets\thought.png" alt="thought" className="w-full" />
+          <img src="https://github.com/walkerbuddy01/Medium-Frontend/blob/2b1c5525bd909585840c0f0e272096f91564a16d/src/assets/thought.png" alt="thought" className="w-full" />
         </div>
       </Link>
       <div className="flex items-center gap-4">
