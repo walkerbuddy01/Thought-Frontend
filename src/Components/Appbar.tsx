@@ -26,7 +26,7 @@ function Appbar({ buttonNeeded = true }: { buttonNeeded?: boolean }) {
 
 
           <img
-            src=" /public/static/images/thought.png"
+            src=" /static/images/thought.png"
             alt="thought"
             className="w-full"
           />
