@@ -1,16 +1,8 @@
-import { ChangeEvent, LegacyRef, forwardRef } from "react";
+import  {  LegacyRef, forwardRef } from "react";
 
-interface InputProps {
-  Label?: string;
-  LabelClass?: string;
-  type: string;
-  placeholder: string;
-  inputClass?: string;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  disabled?: boolean;
-}
 
-function InputBox(
+
+const InputBox = (
   {
     Label = "inputClass",
     LabelClass = "",
@@ -21,7 +13,7 @@ function InputBox(
     ...props
   },
   ref: LegacyRef<HTMLInputElement>
-) {
+) => {
   return (
     <div className="mb-3">
       {Label && (
@@ -39,6 +31,6 @@ function InputBox(
       />
     </div>
   );
-}
+};
 
 export default forwardRef(InputBox);
