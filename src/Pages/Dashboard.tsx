@@ -1,5 +1,7 @@
 import Appbar from "@/Components/Appbar";
-import { Menubar, MenubarMenu, MenubarTrigger } from "@/Components/ui/menubar";
+import { Dock, DockIcon } from "@/Components/magicui/dock";
+
+// import { Menubar, MenubarMenu, MenubarTrigger } from "@/Components/ui/menubar";
 import { IoCreateOutline } from "react-icons/io5";
 import { GoHome } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
@@ -61,30 +63,31 @@ function Dashboard() {
     });
   }
 
+  const Icons = {
+    createBlog: () => <IoCreateOutline size={"1.5em"} />,
+    home: () => <GoHome size={"1.5em"} />,
+  };
+
   return (
     <div className="w-full">
       <Toaster position="top-center" reverseOrder={false} />
       <Appbar buttonNeeded={false} />
-      <div className="flex justify-center mt-4">
-        <div>
-          <Menubar>
-            <MenubarMenu>
-              <Link to={"/createblog"}>
-                <MenubarTrigger>
-                  <IoCreateOutline size={"1.5em"} />
-                </MenubarTrigger>
-              </Link>
-            </MenubarMenu>
-            <MenubarMenu>
-              <Link to={"/blog"}>
-                <MenubarTrigger>
-                  <GoHome size={"1.5em"} />
-                </MenubarTrigger>
-              </Link>
-            </MenubarMenu>
-          </Menubar>
-        </div>
+
+      <div className="relative flex h-[100px] w-full flex-col items-center justify-center overflow-hidden rounded-lg  ">
+        <Dock>
+          <DockIcon>
+            <Link to={"/blogs"}>
+              <Icons.home />
+            </Link>
+          </DockIcon>
+          <DockIcon>
+          <Link to={"/createblog"}>
+              <Icons.createBlog />
+            </Link>
+          </DockIcon>
+        </Dock>
       </div>
+
       <div className=" p-2 md:p-5 h-full w-full flex justify-center">
         <div className=" w-full">
           <div className="flex items-center gap-4 text-xl p-2 font-semibold">
