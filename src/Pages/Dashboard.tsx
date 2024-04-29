@@ -76,7 +76,7 @@ function Dashboard() {
       <div className="relative flex h-[100px] w-full flex-col items-center justify-center overflow-hidden rounded-lg  ">
         <Dock>
           <DockIcon>
-            <Link to={"/blogs"}>
+            <Link to={"/blog"}>
               <Icons.home />
             </Link>
           </DockIcon>
