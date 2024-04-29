@@ -10,7 +10,6 @@ export function useBlog({ page = 1, limit = 100 }: useBlogPorps) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [blogs, setBlogs] = useState([]);
-  console.log(blogs);
 
   useEffect(() => {
     axios({

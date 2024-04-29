@@ -68,7 +68,7 @@ function App() {
             }
           />
           <Route
-            path="/blogs"
+            path="/blog"
             element={
               <AuthLayout children={<BlogSection />} authentication={true} />
             }
