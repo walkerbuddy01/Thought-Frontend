@@ -13,6 +13,7 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/AuthSlice";
 import { IoAddCircleOutline } from "react-icons/io5";
+import { CiUser } from "react-icons/ci";
 
 function Appbar({ buttonNeeded = true }: { buttonNeeded?: boolean }) {
   const userData = useSelector((state: any) => state.auth.userData);
@@ -23,14 +24,11 @@ function Appbar({ buttonNeeded = true }: { buttonNeeded?: boolean }) {
     <div className="flex justify-between border-b p-3">
       <Link to={"/blog"}>
         <div className="w-24">
-
-
           <img
             src=" /static/images/thought.png"
             alt="thought"
             className="w-full"
           />
-
         </div>
       </Link>
       <div className="flex items-center gap-4">
@@ -56,6 +54,12 @@ function Appbar({ buttonNeeded = true }: { buttonNeeded?: boolean }) {
               <DropdownMenuItem>
                 <LuLayoutDashboard />
                 <span className="ml-2">Dashboard</span>
+              </DropdownMenuItem>
+            </Link>
+            <Link to={"/yourprofile"}>
+              <DropdownMenuItem>
+                <CiUser size={"1.2em"}/>
+                <span className="ml-2">Profile</span>
               </DropdownMenuItem>
             </Link>
             <DropdownMenuItem

@@ -89,7 +89,7 @@ function Signup() {
           <InputBox
             Label="Name"
             type="text"
-            placeholder="Enter your name"
+            placeholder="Enter your name with emoji at the end"
             onChange={(e: any) => {
               setUserDetail({ ...userDetail, name: e.target.value });
             }}

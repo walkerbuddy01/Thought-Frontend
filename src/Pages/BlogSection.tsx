@@ -7,6 +7,9 @@ import BlogSkeleton from "../Components/Skeletons/BlogSkeleton";
 interface blogType {
   user: {
     username: string;
+    name: string;
+    description: string;
+    blog: string[];
   };
   title: string;
   content: string;
@@ -16,6 +19,7 @@ interface blogType {
 }
 function BlogSection() {
   const { loading, blogs } = useBlog({ page: 1, limit: 100 });
+  
 
   return (
     <div className="overflow-hidden h-screen ">
@@ -41,11 +45,10 @@ function BlogSection() {
         <div className=" md:flex md:justify-center h-[90%]   ">
           <div className="space-y-5   rounded shadow sm:max-w-screen-sm h-full  overflow-x-hidden  scrollbar-thumb-rounded-full scrollbar-hide ">
             {blogs.map((blog: blogType) => (
-              
               <div key={blog.id}>
                 <Link to={`/blog/${blog.id}`}>
                   <BlogCard
-                    username={blog.user.username}
+                    username={blog.user.name}
                     date={`${blog.createdAt}`}
                     title={blog.title}
                     content={blog.content}

@@ -6,10 +6,11 @@ interface useBlogPorps {
   limit?: number;
 }
 
-export function useBlog({ page = 1, limit = 50 }: useBlogPorps) {
+export function useBlog({ page = 1, limit = 100 }: useBlogPorps) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [blogs, setBlogs] = useState([]);
+  console.log(blogs);
 
   useEffect(() => {
     axios({
@@ -22,7 +23,7 @@ export function useBlog({ page = 1, limit = 50 }: useBlogPorps) {
       .then((response) => setBlogs(response.data))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
-  }, []);
+  }, [page, limit]);
 
   return { loading, blogs, error };
 }
