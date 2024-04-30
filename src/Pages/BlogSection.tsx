@@ -22,9 +22,9 @@ function BlogSection() {
   const { loading, blogs } = useBlog({ page: 1, limit: 100 });
 
   return (
-    <div className="overflow-hidden h-screen ">
+    <div className="overflow-hidden  h-screen ">
       <Appbar />
-      <DockNavigation />
+      <DockNavigation className="hidden sm:flex" />
 
       {loading ? (
         <div className=" md:flex md:justify-center h-[90%] w-full ">
@@ -43,7 +43,7 @@ function BlogSection() {
           </div>
         </div>
       ) : (
-        <div className=" md:flex md:justify-center h-[90%]   ">
+        <div className=" md:flex md:justify-center h-[82%] sm:h-[75%]    ">
           <div className="space-y-5   rounded shadow sm:max-w-screen-sm h-full  overflow-x-hidden  scrollbar-thumb-rounded-full scrollbar-hide ">
             {blogs.map((blog: blogType) => (
               <div key={blog.id}>
@@ -60,6 +60,7 @@ function BlogSection() {
           </div>
         </div>
       )}
+      <DockNavigation className="flex sm:hidden" />
     </div>
   );
 }
