@@ -3,6 +3,7 @@ import Appbar from "../Components/Appbar";
 import BlogCard from "../Components/BlogCard";
 import { useBlog } from "../Hook/UseBlog";
 import BlogSkeleton from "../Components/Skeletons/BlogSkeleton";
+import DockNavigation from "@/Components/DockNavigation";
 
 interface blogType {
   user: {
@@ -19,11 +20,11 @@ interface blogType {
 }
 function BlogSection() {
   const { loading, blogs } = useBlog({ page: 1, limit: 100 });
-  
 
   return (
     <div className="overflow-hidden h-screen ">
       <Appbar />
+      <DockNavigation />
 
       {loading ? (
         <div className=" md:flex md:justify-center h-[90%] w-full ">
