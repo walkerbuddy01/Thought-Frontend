@@ -43,7 +43,6 @@ function Appbar({ buttonNeeded = true }: { buttonNeeded?: boolean }) {
         {/* //Adding  */}
         <DropdownMenu>
           <DropdownMenuTrigger>
-            {" "}
             <Avatar authorname={userData?.username} size="large" />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
