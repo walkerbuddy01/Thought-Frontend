@@ -1,5 +1,5 @@
 import Appbar from "@/Components/Appbar";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Dialog,
   DialogContent,
