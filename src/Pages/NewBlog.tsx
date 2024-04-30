@@ -54,7 +54,7 @@ function NewBlog(): JSX.Element {
   }
   return (
     <div>
-      <Appbar  />
+      <Appbar />
 
       <div className="w-full flex flex-col gap-3 items-center p-2 md:p-4">
         <div className="w-full border-b md:p-3">
@@ -115,7 +115,7 @@ function NewBlog(): JSX.Element {
                     }
                   );
                 }}
-                className="inline-flex items-center px-2  py-1 md:py-2.5 md:px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+                className="inline-flex items-center px-3  py-2 sm:py-2.5 sm:px-4 sm:text-sm text-base font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
               >
                 Post Blog
               </button>
